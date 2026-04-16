@@ -12,7 +12,7 @@ router.get('/', (req: Request, res: Response) => {
 
 router.get('/:id', (req: Request, res: Response) => {
     const id = req.params.id;
-    const product = repository.findById(id);
+    const product = repository.findById(id as string);
     product ? res.status(200).json(product) : res.status(404).json({ message: "No Product found" });
 });
 
@@ -28,7 +28,7 @@ router.put('/:id', (req: Request, res: Response) => {
 
 router.delete('/:id', (req: Request, res: Response) => {
     const productId = req.params.id;
-    const isDeleted = repository.delete(productId);
+    const isDeleted = repository.delete(productId as string);
     isDeleted ? res.status(200).json({ message: `Successfully deleted product ${productId}` }) : res.status(404).json({ message: `Failed to delete product ${productId}` })
 });
 
